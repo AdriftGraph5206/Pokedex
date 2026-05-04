@@ -4,40 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="style.css" rel="stylesheet">
 </head>
-<style>
-    div{
-        border: 1px solid black;
-       
-    }
-
-    .posts{
-        min-width: 400px;
-        position: absolute;
-        left: 10%;
-        
-    }
-
-    .user{
-        color: aqua;
-    }
-
-    .title{
-        
-    }
-
-
-   @media (min-width: 600px) {
-    div {width: 200px;}
-}
-
-@media (min-width: 767px) {
-   div {width: 400px;}
-}
-</style>
 <body>
-    
-    <div class="posts"></div>
+
+    <form>
+        <input type="text"
+        placeholder="Input pokemon name or id"
+        
+        >
+    </form>
+
+    <div id="container"></div>
+
 
 <script src="script.js"></script>
 

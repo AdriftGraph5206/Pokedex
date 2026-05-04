@@ -1,45 +1,48 @@
-async function getPost() {
-    let response = await fetch('https://jsonplaceholder.typicode.com/posts/1')
-    response = await response.json()
-    console.log(response);
-    console.log(response.title)
+async function pokedex() {
+     const postElement = document.getElementById("container")
+    const postsElement = document.createElement("div")
+    
+    let html = ""
+
+    for(let i = 1; i <= 3 ; i++){ 
+        let random = 1 + Math.floor(Math.random() * 1000)
+    console.log("Random: " + random)
+
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${random}`)
+    const data = await res.json()
+
+    
+   
+    
+    
+    let typesHTML = "";
+
+if (data.types.length === 1) {
+    typesHTML = `<div class="${data.types[0].type.name}">${data.types[0].type.name}</div>`;
+} else if (data.types.length === 2) {
+    typesHTML = `
+        <div class="${data.types[0].type.name}">${data.types[0].type.name}</div> <div class="${data.types[1].type.name}">${data.types[1].type.name}</div>
+        
+    `;
+} else {
+    console.log("types error");
+}
+        
+        html += `
+        <div class="card${i}">
+    <h1>${data.name}</h1>
+    <img src=${data.sprites.front_default}>
+    ${typesHTML}
+    </div>
+    `
+    }
+    postElement.appendChild(postsElement)
+
+    
+postElement.innerHTML = html
+console.log()
 }
 
-async function getPosts() {
-    let response = await fetch('https://jsonplaceholder.typicode.com/posts')
-    response = await response.json();
-    return response;
-}
-async function getUsers() {
-    let response = await fetch('https://jsonplaceholder.typicode.com/users')
-    response = await response.json();
-    return response;
-}
 
-function getUserByID(users, id) {
-    return users.find(user => user.id == id);
-}
+pokedex()
 
-window.onload = async () => {
-    const posts = await getPosts();
-    const users = await getUsers();
-
-
-
-    const postsElement = document.querySelector(".posts");
-
-    posts.forEach(post => {
-        const postElement = document.createElement('div');
-        postElement.classList.add('post');
-
-        const user = getUserByID(users, post.userId);
-
-        postElement.innerHTML = `
-            
-            <p class="title">${post.title}</p>
-            <pclass="post">${post.body}</p>
-            <p class="user">${user.name}</p>
-        `;
-        postsElement.append(postElement);
-    });
-}

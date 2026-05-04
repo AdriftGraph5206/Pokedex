@@ -1,0 +1,122 @@
+body{
+    background-color: grey;
+    color: white;
+}
+
+
+.fairy, .grass, .poison, .fire, .water, .bug, .flying, .normal, .electric, .ice, .fighting, .ground, .psychic, .rock, .ghost, .dragon, .dark, .steel{
+    color: white;
+    border-radius: 4px;
+    width: 50%;
+    text-align: center;
+}
+
+img{
+    width: 50%;
+     image-rendering: pixelated;
+}
+
+.grass{
+    background-color: rgb(104,176,35);
+    
+}
+.poison{
+    background-color: rgb(206,165,247);
+    
+}
+.fire{
+    background-color: rgb(236,129,70);
+    
+}
+.water{
+    background-color: rgb(16,116,150);
+    
+}
+.bug{
+    background-color: 	rgb(152,208,72);
+    
+}
+.flying{
+    background-color:#A98FF3;
+    
+}
+
+.normal{
+    background-color: #A8A77A;
+    
+}
+.electric{
+    background-color: #F7D02C;
+    
+}
+.ice{
+    background-color: #96D9D6;
+    
+}
+.fighting{
+    background-color: #C22E28;
+    
+}
+.ground{
+    background-color: #E2BF65;
+    
+}
+.psychic{
+    background-color: #F95587;
+    
+}
+.rock{
+    background-color: #B6A136;
+    
+}
+.ghost{
+    background-color: #735797;
+    
+    
+}
+.dragon{
+    background-color: #6F35FC;
+    
+    
+}
+.dark{
+    background-color: #705746;
+    
+    
+}
+.steel{
+    background-color: #B7B7CE;
+    
+    
+}
+.fairy{
+    background-color: #D685AD;
+    
+    
+}
+
+.container{
+    z-index: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.card1, .card2, .card3, .card4, .card5, .card6, .card6, .card7, .card8, .card9{
+    width: 20%;
+    height: 20%;
+    position: absolute;
+}
+
+.card1{
+    
+    left: 10%;
+    
+}
+
+.card2{
+    left: 30%;
+}
+.card3{
+    left: 50%;
+}
