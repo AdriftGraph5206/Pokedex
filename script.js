@@ -4,11 +4,11 @@ async function pokedex() {
     
     let html = ""
 
-    for(let i = 1; i <= 3 ; i++){ 
+    for(let i = 1; i <= 9 ; i++){ 
         let random = 1 + Math.floor(Math.random() * 1000)
     console.log("Random: " + random)
 
-    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${random}`)
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
     const data = await res.json()
 
     
@@ -42,7 +42,6 @@ if (data.types.length === 1) {
 postElement.innerHTML = html
 console.log()
 }
-
 
 pokedex()
 
