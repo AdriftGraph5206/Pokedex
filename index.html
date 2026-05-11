@@ -7,19 +7,19 @@
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
+    <header class="site-header">
+        <div class="brand">Pokedex</div>
+        <div class="search">
+            <input type="text" placeholder="Search by name or id" id="search1">
+            <input type="button" value="Search" id="searchBtn">
+        </div>
+    </header>
 
-    <form>
-        <input type="text"
-        placeholder="Input pokemon name or id"
-        id="search1"
-        >
-        <input type="submit" onclick="search()">
-    </form>
+    <main>
+        <div id="container"></div>
+    </main>
 
-    <div id="container"></div>
-
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>

@@ -1,47 +1,62 @@
+let pokemons = [];
+
 async function pokedex() {
-     const postElement = document.getElementById("container")
-    const postsElement = document.createElement("div")
-    
-    let html = ""
+  const container = document.getElementById('container');
+  container.innerHTML = 'Loading Pokémon...';
 
-    for(let i = 1; i <= 9 ; i++){ 
-        let random = 1 + Math.floor(Math.random() * 1000)
-    console.log("Random: " + random)
+  const max = 1000;
+  const requests = [];
+  for (let i = 1; i <= max; i++) {
+    requests.push(fetch(`https://pokeapi.co/api/v2/pokemon/${i}`).then(r => r.json()).catch(() => null));
+  }
 
-    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
-    const data = await res.json()
+  const results = await Promise.all(requests);
+  pokemons = results.filter(Boolean);
+  renderPokemons(pokemons);
+}
 
-    
-   
-    
-    
-    let typesHTML = "";
+function renderPokemons(list) {
+  const container = document.getElementById('container');
+  if (!list || list.length === 0) {
+    container.innerHTML = 'No Pokémon found.';
+    return;
+  }
 
-if (data.types.length === 1) {
-    typesHTML = `<div class="${data.types[0].type.name}">${data.types[0].type.name}</div>`;
-} else if (data.types.length === 2) {
-    typesHTML = `
-        <div class="${data.types[0].type.name}">${data.types[0].type.name}</div> <div class="${data.types[1].type.name}">${data.types[1].type.name}</div>
-        
+  const html = list.map(data => {
+    const typesHTML = data.types.map(t => `<div class="${t.type.name}">${t.type.name}</div>`).join(' ');
+    const img = data.sprites && data.sprites.front_default ? data.sprites.front_default : '';
+    return `
+      <div class="card" data-name="${data.name}" data-id="${data.id}">
+        <h1>${data.name}</h1>
+        ${img ? `<img src="${img}" alt="${data.name}">` : ''}
+        <div class="types">${typesHTML}</div>
+      </div>
     `;
-} else {
-    console.log("types error");
-}
-        
-        html += `
-        <div class="card${i}">
-    <h1>${data.name}</h1>
-    <img src=${data.sprites.front_default}>
-    ${typesHTML}
-    </div>
-    `
-    }
-    postElement.appendChild(postsElement)
+  }).join('');
 
-    
-postElement.innerHTML = html
-console.log()
+  container.innerHTML = html;
 }
 
-pokedex()
+function search() {
+  const q = document.getElementById('search1').value.toLowerCase().trim();
+  const cards = document.querySelectorAll('#container .card');
+  if (!q) {
+    cards.forEach(c => c.style.display = '');
+    return;
+  }
 
+  cards.forEach(c => {
+    const name = c.dataset.name.toLowerCase();
+    const id = String(c.dataset.id);
+    const match = name.includes(q) || id === q;
+    c.style.display = match ? '' : 'none';
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const input = document.getElementById('search1');
+  const btn = document.getElementById('searchBtn');
+  if (input) input.addEventListener('input', search);
+  if (btn) btn.addEventListener('click', search);
+  pokedex();
+});
