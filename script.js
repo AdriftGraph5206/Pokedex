@@ -2,9 +2,10 @@ let pokemons = [];
 
 async function pokedex() {
   const container = document.getElementById('container');
+  const open = document.getElementById('open');
   container.innerHTML = 'Loading Pokémon...';
 
-  const max = 1000;
+  const max = 1025;
   const requests = [];
   for (let i = 1; i <= max; i++) {
     requests.push(fetch(`https://pokeapi.co/api/v2/pokemon/${i}`).then(r => r.json()).catch(() => null));
@@ -26,16 +27,32 @@ function renderPokemons(list) {
     const typesHTML = data.types.map(t => `<div class="${t.type.name}">${t.type.name}</div>`).join(' ');
     const img = data.sprites && data.sprites.front_default ? data.sprites.front_default : '';
     return `
-      <div class="card" data-name="${data.name}" data-id="${data.id}">
+      <div class="card" data-name="${data.name}" data-id="${data.id}" ')">
         <h1>${data.name}</h1>
+        <p>${data.id}</p>
         ${img ? `<img src="${img}" alt="${data.name}">` : ''}
         <div class="types">${typesHTML}</div>
       </div>
     `;
+
   }).join('');
 
   container.innerHTML = html;
 }
+//     let html1 = function openasd(datas) {
+//       const open = document.getElementById('open');
+//       open.style.backgroundColor = 'red';
+//       open.style.zIndex = 2;
+//       console.log(datas)
+//       return `
+//       <h1>${datas}</h1>
+//       `
+
+    
+// }
+
+// console.log(html1())
+// open.innerHTML = html1();
 
 function search() {
   const q = document.getElementById('search1').value.toLowerCase().trim();
@@ -48,7 +65,7 @@ function search() {
   cards.forEach(c => {
     const name = c.dataset.name.toLowerCase();
     const id = String(c.dataset.id);
-    const match = name.includes(q) || id === q;
+    const match = name.includes(q) || id.startsWith(q);
     c.style.display = match ? '' : 'none';
   });
 }

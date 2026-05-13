@@ -42,7 +42,7 @@ body{
 #searchBtn{ padding:8px 12px; border-radius:8px; border:none; background: var(--accent); color:white; cursor:pointer }
 #searchBtn:hover{ opacity:0.95 }
 
-#container{ max-width:1200px; margin:20px auto; padding:18px; display:grid; grid-template-columns: repeat(4, 1fr); gap:16px; box-sizing:border-box }
+#container{ max-width:1200px; margin:20px auto; padding:18px; display:grid; grid-template-columns: repeat(4, 1fr); gap:16px; box-sizing:border-box; z-index: 1; }
 
 @media (max-width:1000px){ #container{ grid-template-columns: repeat(3,1fr) } }
 @media (max-width:700px){ #container{ grid-template-columns: repeat(2,1fr) } #search1{ min-width:140px } }
@@ -78,3 +78,14 @@ body{
 
 .types div{ color: #fff }
 
+#open{
+    
+    width: 60%;
+    height: 60%;
+    position: fixed;
+    top: 10%;
+    left: 20%;
+    display: flex;
+    z-index: -1;
+    color: white;
+}
