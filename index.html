@@ -12,12 +12,21 @@
         <div class="search">
             <input type="text" placeholder="Search by name or id" id="search1">
             <input type="button" value="Search" id="searchBtn">
+            <input type="button" value="Random" id="randomBtn">
         </div>
     </header>
 
     <main>
         <div id="container"></div>
-   
+        <div id="pagination" class="pagination">
+            <button id="prevBtn">Prev</button>
+            <div class="page-input-group">
+                <input type="number" id="pageInput" min="1" value="1">
+                <span id="pageInfo"> / 52</span>
+            </div>
+            <button id="nextBtn">Next</button>
+        </div>
+        <div id="open"></div>
     </main>
 
     <script src="script.js"></script>
